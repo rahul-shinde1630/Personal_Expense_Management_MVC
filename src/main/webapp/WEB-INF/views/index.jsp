@@ -9,66 +9,71 @@
 		<div class="page-wrapper">
 			<div class="page-content">
 				<div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
-                   <div class="col">
-					 <div class="card radius-10 border-start border-0 border-4 border-info">
-						<div class="card-body">
-							<div class="d-flex align-items-center">
-								<div>
-									<p class="mb-0 text-secondary">Total Orders</p>
-									<h4 class="my-1 text-info">4805</h4>
-									<p class="mb-0 font-13">+2.5% from last week</p>
-								</div>
-								<div class="widgets-icons-2 rounded-circle bg-gradient-blues text-white ms-auto"><i class='bx bxs-cart'></i>
-								</div>
-							</div>
-						</div>
-					 </div>
+                  <div class="row">
+					   <div class="col">
+					     <div class="card radius-10 border-start border-0 border-4 border-info">
+					       <div class="card-body">
+					         <div class="d-flex align-items-center">
+					           <div>
+					             <p class="mb-0 text-secondary">Total Income</p>
+					             <!-- AJAX will fill this -->
+					             <h4 id="incomeValue" class="my-1 text-info">Loading...</h4>
+					           </div>
+					           <div class="widgets-icons-2 rounded-circle bg-gradient-blues text-white ms-auto">
+					             <i class='bx bx-money'></i>
+					           </div>
+					         </div>
+					       </div>
+					     </div>
+					   </div>
+					</div>
+
+				     <div class="col">
+					     <div class="card radius-10 border-start border-0 border-4 border-danger">
+					       <div class="card-body">
+					         <div class="d-flex align-items-center">
+					           <div>
+					             <p class="mb-0 text-secondary">Total Expense</p>
+					             <h4 class="my-1 text-danger">${expense}</h4>
+					           </div>
+					           <div class="widgets-icons-2 rounded-circle bg-gradient-burning text-white ms-auto">
+					             <i class='bx bx-wallet'></i>
+					           </div>
+					         </div>
+					       </div>
+					     </div>
+					   </div>
+				  <div class="col">
+				     <div class="card radius-10 border-start border-0 border-4 border-success">
+				       <div class="card-body">
+				         <div class="d-flex align-items-center">
+				           <div>
+				             <p class="mb-0 text-secondary">Net Balance</p>
+				             <h4 class="my-1 text-success">${net}</h4>
+				           </div>
+				           <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto">
+				             <i class='bx bx-line-chart'></i>
+				           </div>
+				         </div>
+				       </div>
+				     </div>
 				   </div>
-				   <div class="col">
-					<div class="card radius-10 border-start border-0 border-4 border-danger">
-					   <div class="card-body">
-						   <div class="d-flex align-items-center">
-							   <div>
-								   <p class="mb-0 text-secondary">Total Revenue</p>
-								   <h4 class="my-1 text-danger">$84,245</h4>
-								   <p class="mb-0 font-13">+5.4% from last week</p>
-							   </div>
-							   <div class="widgets-icons-2 rounded-circle bg-gradient-burning text-white ms-auto"><i class='bx bxs-wallet'></i>
-							   </div>
-						   </div>
-					   </div>
-					</div>
-				  </div>
+
 				  <div class="col">
-					<div class="card radius-10 border-start border-0 border-4 border-success">
-					   <div class="card-body">
-						   <div class="d-flex align-items-center">
-							   <div>
-								   <p class="mb-0 text-secondary">Bounce Rate</p>
-								   <h4 class="my-1 text-success">34.6%</h4>
-								   <p class="mb-0 font-13">-4.5% from last week</p>
-							   </div>
-							   <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class='bx bxs-bar-chart-alt-2' ></i>
-							   </div>
-						   </div>
-					   </div>
-					</div>
-				  </div>
-				  <div class="col">
-					<div class="card radius-10 border-start border-0 border-4 border-warning">
-					   <div class="card-body">
-						   <div class="d-flex align-items-center">
-							   <div>
-								   <p class="mb-0 text-secondary">Total Customers</p>
-								   <h4 class="my-1 text-warning">8.4K</h4>
-								   <p class="mb-0 font-13">+8.4% from last week</p>
-							   </div>
-							   <div class="widgets-icons-2 rounded-circle bg-gradient-orange text-white ms-auto"><i class='bx bxs-group'></i>
-							   </div>
-						   </div>
-					   </div>
-					</div>
-				  </div> 
+				     <div class="card radius-10 border-start border-0 border-4 border-warning">
+				       <div class="card-body">
+				         <div class="d-flex align-items-center">
+				           <div>
+				             <p class="mb-0 text-secondary">Borrowed Remaining</p>
+				             <h4 class="my-1 text-warning">${borrowedRemaining}</h4>
+				           </div>
+				           <div class="widgets-icons-2 rounded-circle bg-gradient-orange text-white ms-auto">
+				             <i class='bx bx-group'></i>
+				           </div>
+				         </div>
+				       </div>
+				     </div>
+				   </div> 
 				</div><!--end row-->
 
 				<div class="row">
@@ -575,5 +580,26 @@
 
 
 		
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+   $(document).ready(function () {
+       $.ajax({
+           url: "/reports/income",   // 👈 MVC Controller ला call
+           method: "GET",
+           data: {
+               month: 8,
+               year: 2025
+           },
+           success: function (response) {
+               $("#incomeValue").text("₹ " + response);
+           },
+           error: function (xhr, status, error) {
+               console.error("Error:", error);
+               $("#incomeValue").text("Error fetching income");
+           }
+       });
+   });
+</script>
+
 
 <jsp:include page="modules/footer.jsp"/>

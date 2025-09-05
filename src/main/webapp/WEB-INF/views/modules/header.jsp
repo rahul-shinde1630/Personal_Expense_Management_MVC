@@ -18,6 +18,8 @@
 	<!-- Bootstrap CSS -->
 	<!-- Bootstrap Bundle JS (includes Popper) -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<!--alert  -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- jQuery (required for your AJAX call) -->

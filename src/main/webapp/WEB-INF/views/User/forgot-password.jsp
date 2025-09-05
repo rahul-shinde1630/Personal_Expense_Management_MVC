@@ -32,10 +32,10 @@
                                     <div class="my-4">
                                         <label class="form-label">Email id</label>
                                         <input type="email" name="email" class="form-control" placeholder="example@user.com" required />
-                                         <button type="submit" class="btn btn-primary">Send</button>
+                                        
                                     </div>
                                     <div class="d-grid gap-2">
-                                       
+                                        <button type="submit" class="btn btn-primary">Send</button>
                                         <a href="login" class="btn btn-light">
                                             <i class='bx bx-arrow-back me-1'></i>Back to Login
                                         </a>
