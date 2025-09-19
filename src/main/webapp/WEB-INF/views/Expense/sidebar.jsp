@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- modules/sidebar.jsp -->
-<div class="bg-white border rounded p-3 " style="top: 80px; left: 20px; height: calc(100vh - 100px); overflow-y: auto;" >
+<div class="bg-white border rounded p-3 " style="top: 80px; left: 20px; height: calc(120vh - 100px); overflow-y: auto;" >
     <!-- Title -->
     <h5 class="fw-bold mb-3">Expense</h5>
 

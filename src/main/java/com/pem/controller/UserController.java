@@ -50,9 +50,9 @@ public class UserController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		if (session != null) {
-			session.invalidate();
+			session.invalidate(); // destroy session
 		}
-		return "redirect:/login";
+		return "redirect:/login?logout=true"; // optional message param
 	}
 
 }

@@ -21,10 +21,31 @@ public class ReportsController {
 	@GetMapping("/income")
 	@ResponseBody
 	public double getIncome(HttpSession session, @RequestParam int month, @RequestParam int year) {
-		String email = (String) session.getAttribute("email"); // 👈 session मधून email घे
+		String email = (String) session.getAttribute("email");
 		if (email == null) {
 			throw new RuntimeException("User not logged in");
 		}
 		return reportsService.getIncome(email, month, year);
 	}
+
+	@GetMapping("/expense")
+	@ResponseBody
+	public double getExpense(HttpSession session, @RequestParam int month, @RequestParam int year) {
+		String email = (String) session.getAttribute("email");
+		if (email == null) {
+			throw new RuntimeException("User not logged in");
+		}
+		return reportsService.getExpense(email, month, year);
+	}
+
+	@GetMapping("/borrowedRemaining")
+	@ResponseBody
+	public Double getBorrowedRemaining(HttpSession session, @RequestParam int month, @RequestParam int year) {
+		String email = (String) session.getAttribute("email");
+		if (email == null) {
+			throw new RuntimeException("User not logged in");
+		}
+		return reportsService.getBorrowedRemaining(email, month, year);
+	}
+
 }

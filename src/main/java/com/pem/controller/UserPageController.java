@@ -8,6 +8,7 @@ public class UserPageController {
 
 	@GetMapping("/")
 	public String loginPage() {
+
 		return "login";
 	}
 

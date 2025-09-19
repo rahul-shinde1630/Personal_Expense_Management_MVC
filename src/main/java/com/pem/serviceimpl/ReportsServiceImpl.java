@@ -12,11 +12,26 @@ public class ReportsServiceImpl implements ReportsService {
 	@Autowired
 	private RestTemplate restTemplate;
 
-	private final String API_URL = "http://localhost:9197/api/reports/income";
-
 	@Override
 	public double getIncome(String email, int month, int year) {
-		String url = API_URL + "?email=" + email + "&month=" + month + "&year=" + year;
-		return restTemplate.getForObject(url, Double.class);
+		String url = "http://localhost:9197/api/reports/income?email=" + email + "&month=" + month + "&year=" + year;
+		Double result = restTemplate.getForObject(url, Double.class);
+		return result != null ? result : 0.0;
 	}
+
+	@Override
+	public double getExpense(String email, int month, int year) {
+		String url = "http://localhost:9197/api/reports/expense?email=" + email + "&month=" + month + "&year=" + year;
+		Double result = restTemplate.getForObject(url, Double.class);
+		return result != null ? result : 0.0;
+	}
+
+	@Override
+	public Double getBorrowedRemaining(String email, int month, int year) {
+		String url = "http://localhost:9197/api/reports/borrowedRemaining?email=" + email + "&month=" + month + "&year="
+				+ year;
+		Double result = restTemplate.getForObject(url, Double.class);
+		return result != null ? result : 0.0;
+	}
+
 }

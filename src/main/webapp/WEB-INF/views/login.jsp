@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>  
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="modules2/header.jsp"/>
+<%-- <c:if test="${param.logout != null}">
+    <div class="alert alert-success">
+        ✅ You have successfully logged out!
+    </div>
+</c:if> --%>
 
 <!--wrapper-->
 <div class="wrapper">

@@ -2,7 +2,7 @@
 
 <!-- modules/sidebar.jsp -->
 <div class="bg-white border rounded p-3"
-     style="top: 80px; left: 20px; height: calc(100vh - 100px); overflow-y: auto; min-width: 250px;">
+     style="top: 80px; left: 20px; height: calc(120vh - 100px); overflow-y: auto; min-width: 250px;">
 
     <!-- Title -->
     <h5 class="fw-bold mb-3 text-center">Repayment Module</h5>
