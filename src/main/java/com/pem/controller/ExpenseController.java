@@ -1,5 +1,6 @@
 package com.pem.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pem.dto.bank.BankDto;
 import com.pem.dto.category.CategoryDto;
+import com.pem.dto.expense.ExpenseAnalysisResponseDto;
 import com.pem.dto.expense.ExpenseDto;
 import com.pem.dto.expense.ExpenseRequestDto;
 import com.pem.dto.expense.UpdateExpenseDto;
@@ -175,6 +177,18 @@ public class ExpenseController {
 		}
 
 		return "redirect:/transactions";
+	}
+
+	@GetMapping("/analysis")
+	public String showAnalysis(Model model, HttpSession session) {
+		String email = (String) session.getAttribute("email");
+		LocalDate today = LocalDate.now();
+
+		ExpenseAnalysisResponseDto analysis = expenseService.getSpendingAnalysis(email, today.getMonthValue(),
+				today.getYear());
+
+		model.addAttribute("analysis", analysis);
+		return "Expense/analysis";
 	}
 
 }

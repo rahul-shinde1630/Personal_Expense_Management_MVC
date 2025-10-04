@@ -11,6 +11,12 @@
         
       
     </div>
+    
+     <div class="d-grid mb-3	">
+        <a href="forecast" class="btn btn-primary rounded-pill"><i class='bx bx-plus'></i> Analysis BY Income</a>
+        
+      
+    </div>
         <!-- Show Button -->
       <div class="d-grid mb-3">
   		<a href="incomes" class="btn btn-primary rounded-pill"><i class='bx bx-show'></i> Show Incomes</a>

@@ -52,7 +52,7 @@ public class BudgetController {
 	@GetMapping("/viewBudget")
 	public String viewBudgets(@RequestParam(value = "category", required = false) String category,
 			@RequestParam(value = "page", defaultValue = "1") int page,
-			@RequestParam(value = "size", defaultValue = "10") int size, HttpSession session, Model model) {
+			@RequestParam(value = "size", defaultValue = "20") int size, HttpSession session, Model model) {
 
 		String email = (String) session.getAttribute("email");
 		if (email == null) {

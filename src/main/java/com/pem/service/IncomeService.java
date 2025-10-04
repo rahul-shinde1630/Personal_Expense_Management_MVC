@@ -2,6 +2,7 @@ package com.pem.service;
 
 import org.springframework.data.domain.Page;
 
+import com.pem.dto.income.IncomeForecastResponseDto;
 import com.pem.dto.income.IncomeRequestDto;
 import com.pem.dto.income.IncomeResponseDto;
 
@@ -20,5 +21,7 @@ public interface IncomeService {
 			int size);
 
 	Page<IncomeResponseDto> getAllIncome(String email, int page, int size);
+
+	IncomeForecastResponseDto forecastIncome(String email, int i);
 
 }

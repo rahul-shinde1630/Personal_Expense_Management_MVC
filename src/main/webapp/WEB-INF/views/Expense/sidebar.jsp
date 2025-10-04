@@ -11,6 +11,11 @@
         
       
     </div>
+     <div class="d-grid mb-3	">
+        <a href="analysis" class="btn btn-primary"><i class='bx bx-analysis'></i> Analysis By Category</a>
+        
+      
+    </div>
         <!-- Show Button -->
       <div class="d-grid mb-3">
   		<a href="transactionss" class="btn btn-primary"><i class='bx bx-show'></i> show</a>

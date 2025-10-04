@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pem.dto.bank.BankDto;
 import com.pem.dto.category.CategoryDto;
+import com.pem.dto.income.IncomeForecastResponseDto;
 import com.pem.dto.income.IncomeRequestDto;
 import com.pem.dto.income.IncomeResponseDto;
 import com.pem.service.BankService;
@@ -158,6 +159,16 @@ public class IncomeController {
 	public String deleteIncome(@RequestParam Long id, HttpSession session) {
 		incomeService.delete(id);
 		return "redirect:/incomes";
+	}
+
+	@GetMapping("/forecast")
+	public String showIncomeForecast(Model model, HttpSession session) {
+		String email = (String) session.getAttribute("email");
+
+		IncomeForecastResponseDto forecast = incomeService.forecastIncome(email, 6);
+
+		model.addAttribute("incomeForecast", forecast);
+		return "Income/incomeForecast"; // JSP page
 	}
 
 }

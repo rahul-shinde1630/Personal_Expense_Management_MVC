@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.pem.dto.expense.ExpenseAnalysisResponseDto;
 import com.pem.dto.expense.ExpenseDto;
 import com.pem.dto.expense.ExpenseRequestDto;
 import com.pem.dto.expense.PageResponse;
@@ -126,6 +127,13 @@ public class ExpenseServiceimpl implements ExpenseService {
 			System.out.println("Error fetching paginated expenses by date: " + e.getMessage());
 			return Page.empty();
 		}
+	}
+
+	@Override
+	public ExpenseAnalysisResponseDto getSpendingAnalysis(String email, int month, int year) {
+		String apiUrl = "http://localhost:9197/api/expenses/analysis?email=" + email + "&month=" + month + "&year="
+				+ year;
+		return restTemplate.getForObject(apiUrl, ExpenseAnalysisResponseDto.class);
 	}
 
 }

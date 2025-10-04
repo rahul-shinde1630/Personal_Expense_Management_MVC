@@ -9,9 +9,11 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import com.pem.dto.income.PageResponse;
+
+import com.pem.dto.income.IncomeForecastResponseDto;
 import com.pem.dto.income.IncomeRequestDto;
 import com.pem.dto.income.IncomeResponseDto;
+import com.pem.dto.income.PageResponse;
 import com.pem.service.IncomeService;
 
 @Service
@@ -63,8 +65,8 @@ public class IncomeServiceImpl implements IncomeService {
 				+ filterValue + "&page=" + page + "&size=" + size;
 
 		try {
-			ResponseEntity<com.pem.dto.income.PageResponse<IncomeResponseDto>> response = restTemplate.exchange(url, HttpMethod.GET, null,
-					new ParameterizedTypeReference<PageResponse<IncomeResponseDto>>() {
+			ResponseEntity<com.pem.dto.income.PageResponse<IncomeResponseDto>> response = restTemplate.exchange(url,
+					HttpMethod.GET, null, new ParameterizedTypeReference<PageResponse<IncomeResponseDto>>() {
 					});
 
 			PageResponse<IncomeResponseDto> pageResponse = response.getBody();
@@ -124,6 +126,14 @@ public class IncomeServiceImpl implements IncomeService {
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	@Override
+	public IncomeForecastResponseDto forecastIncome(String email, int months) {
+		IncomeForecastResponseDto dto = restTemplate.getForObject(
+				BASE_API_URL + "/forecast?email=" + email + "&months=" + months, IncomeForecastResponseDto.class);
+
+		return dto;
 	}
 
 }
