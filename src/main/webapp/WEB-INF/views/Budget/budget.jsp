@@ -11,9 +11,11 @@
       <div class="col-md-3">
         <jsp:include page="./sidebar-budget.jsp" />
       </div>
-
-      <div class="col-xl-6 mx-auto">
+		
+      <div class="col-md-7 mx-auto">
         <!-- ✅ Alert Box -->
+        	<h6 class="mb-0 text-uppercase">Add Budget</h6>
+				<hr/>
         <div id="alertBox" class="alert" style="display:none;"></div>
 
         <div class="card">
@@ -101,15 +103,18 @@ function showAlert(message, type) {
 function validateBudgetForm() {
   let isValid = true;
 
-  // Title
-  let title = document.getElementById("budgetTitle").value.trim();
-  if (title === "") {
-    document.getElementById("titleError").classList.remove("d-none");
-    isValid = false;
-  } else {
-    document.getElementById("titleError").classList.add("d-none");
-  }
 
+//Submit-time validation
+let title = document.getElementById("budgetTitle").value.trim();
+let titleRegex = /^[A-Za-z\s]+$/; // letters + spaces only
+
+if (title === "" || !titleRegex.test(title)) {
+   document.getElementById("titleError").classList.remove("d-none");
+   document.getElementById("titleError").innerText = "Please enter a valid title (letters only)";
+   isValid = false;
+} else {
+   document.getElementById("titleError").classList.add("d-none");
+}
   // Amount
   let amount = document.getElementById("totalAmount").value;
   if (amount === "" || amount <= 0) {

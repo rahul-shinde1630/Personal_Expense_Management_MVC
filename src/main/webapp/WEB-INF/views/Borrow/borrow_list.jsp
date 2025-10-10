@@ -10,11 +10,12 @@
         <jsp:include page="./sidebar.jsp" />
       </div>
 
-      <div class="col-md-7 col-sm-6 mx-auto">
+      <div class="col-md-8 col-sm-6 mx-auto">
+      <h6 class="mb-0 text-uppercase">Your Borrowed</h6>
+				<hr/>
         <div class="card">
           <div class="card-body p-4">
-            <h2 class="text-center">Borrowed Money List</h2>
-
+           
             <div class="table-responsive">
               <table class="table table-bordered table-striped mt-4">
                   <thead class="table-striped">

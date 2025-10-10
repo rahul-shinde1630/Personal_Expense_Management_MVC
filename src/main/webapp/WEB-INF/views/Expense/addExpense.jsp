@@ -23,7 +23,7 @@
 						<form id="expenseForm" class="row g-3" action="addExpense" method="post" onsubmit="return validateExpenseForm()">
 							
 							<!-- BANK DROPDOWN -->
-							<div class="col-md-12">
+							<div class="col-md-6">
 								<label for="account" class="form-label">Bank Name</label>
 								<select class="form-select" id="account" name="account">
 									<option selected disabled>Choose Bank...</option>
@@ -35,12 +35,19 @@
 								<small class="text-danger d-none" id="accountError">Please select a bank</small>
 							</div>
 
+							<!-- NEW BANK INPUT -->
+							<div class="col-md-6" id="newBankDiv" style="display:none;">
+							    <label for="newAccount" class="form-label">New Bank Name</label>
+							    <input type="text" class="form-control" id="newAccount" name="newAccount" placeholder="Enter new bank name">
+							    <small class="text-danger d-none" id="newBankError">Please enter bank name</small>
+							</div>
 							<!-- AMOUNT -->
 							<div class="col-md-6">
-								<label for="amount" class="form-label">Amount (₹)</label>
-								<input type="number" class="form-control" id="amount" name="amount" placeholder="e.g., 250" required>
-								<small class="text-danger d-none" id="amountError">Please enter a valid amount</small>
+							    <label for="amount" class="form-label">Amount (₹)</label>
+							    <input type="text"  class="form-control" id="amount"  name="amount"  placeholder="e.g., 250"  required  onkeypress="return allowOnlyNumbers(event)"  onpaste="return false"  ><!-- Prevent pasting alphabets --> 
+							    <small class="text-danger d-none" id="amountError">Please enter a valid amount</small>
 							</div>
+
 							
 							<!-- CATEGORY DROPDOWN -->
 							<div class="col-md-6">
@@ -129,14 +136,7 @@ function validateExpenseForm() {
         document.getElementById("accountError").classList.add("d-none");
     }
 
-    // Amount validation
-    let amount = document.getElementById("amount").value;
-    if (amount === "" || amount <= 0) {
-        document.getElementById("amountError").classList.remove("d-none");
-        isValid = false;
-    } else {
-        document.getElementById("amountError").classList.add("d-none");
-    }
+ 
 
     // Category validation
     let category = document.getElementById("category").value;
@@ -174,5 +174,39 @@ function validateExpenseForm() {
     // If valid → show success alert
     showAlert("Expense added successfully!", "success");
     return true;
+}
+</script>
+<script>
+function allowOnlyNumbers(event) {
+    const charCode = event.which ? event.which : event.keyCode;
+
+    // Allow digits (0–9) and one dot (.)
+    if ((charCode >= 48 && charCode <= 57) || charCode === 46) {
+        // Prevent multiple dots
+        const inputValue = event.target.value;
+        if (charCode === 46 && inputValue.includes('.')) {
+            return false;
+        }
+        return true;
+    }
+
+    // Block any other input (letters, symbols, spaces)
+    return false;
+}
+
+// Extra validation check before submitting
+function validateAmount() {
+    const amount = document.getElementById("amount").value.trim();
+    const error = document.getElementById("amountError");
+    let isValid = true;
+
+    if (amount === "" || isNaN(amount) || parseFloat(amount) <= 0) {
+        error.classList.remove("d-none");
+        isValid = false;
+    } else {
+        error.classList.add("d-none");
+    }
+
+    return isValid;
 }
 </script>

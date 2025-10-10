@@ -11,13 +11,13 @@
                 <jsp:include page="./sidebar.jsp" />
             </div>
       <div class="col-md-7 mx-auto">
-
+	<h6 class="mb-0 text-uppercase">Add Borrowed</h6>
+				<hr/>
         <div class="card">
           <div class="card-body p-4">
-            <h5 class="mb-4">Add Borrowed Money</h5>
             <p style="color: green;">${successMsg}</p>
             <p style="color: red;">${errMsg}</p>
-
+			
             <form class="row g-3" action="addBorrow" method="post">
 
               <div class="col-12 col-md-6"">
@@ -48,8 +48,9 @@
               <div class="col-md-6">
                 <label for="status" class="form-label">Status</label>
                 <select class="form-select" id="status" name="status" required>
-                  <option value="Pending">Pending</option>
-                  <option value="Paid">Paid</option>
+             	<option value="PENDING">Pending</option>
+				<option value="PAID">Paid</option>
+				<option value="PARTIAL">Partial</option>
                 </select>
               </div>
 

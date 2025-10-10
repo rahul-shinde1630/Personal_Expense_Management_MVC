@@ -10,10 +10,11 @@
 				<jsp:include page="../Borrow/sidebar.jsp" />
 			</div>
 			<div class="col-md-7  mx-auto">
+				<h6 class="mb-0 text-uppercase">Add Lent</h6>
+				<hr/>
 				<div class="card">
 					<div class="card-body p-4">
-						<h5 class="mb-4">Add Lent Money</h5>
-
+						
 						<p style="color: green;">${successMsg}</p>
 						<p style="color: red;">${errMsg}</p>
 
@@ -54,9 +55,9 @@
 								<label for="status" class="form-label">Status</label>
 								<select id="status" class="form-select" name="status" required>
 									<option selected disabled>Choose status...</option>
-									<option value="Pending">Pending</option>
-									<option value="Paid">Paid</option>
-									<option value="Partial">Partial</option>
+									<option value="PENDING">Pending</option>
+									<option value="PAID">Paid</option>
+									<option value="PARTIAL">Partial</option>
 								</select>
 							</div>
 

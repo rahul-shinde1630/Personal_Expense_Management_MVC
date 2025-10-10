@@ -22,18 +22,26 @@
                     <div class="card-body p-4">
                         <form id="incomeForm" class="row g-3" action="addIncomes" method="post" onsubmit="return validateIncomeForm()">
 
-                            <!-- BANK DROPDOWN -->
-                            <div class="col-md-12">
-                                <label for="account" class="form-label">Bank Name</label>
-                                <select class="form-select" id="account" name="account">
-                                    <option selected disabled>Choose Bank...</option>
-                                    <c:forEach var="bank" items="${banks}">
-                                        <option value="${bank.name}">${bank.name}</option>
-                                    </c:forEach>
-                                    <option value="__new__">+ Add New Bank</option>
-                                </select>
-                                <small class="text-danger d-none" id="accountError">Please select a bank</small>
-                            </div>
+                          <!-- BANK DROPDOWN -->
+							<div class="col-md-6">
+							    <label for="account" class="form-label">Bank Name</label>
+							    <select class="form-select" id="account" name="account">
+							        <option selected disabled>Choose Bank...</option>
+							        <c:forEach var="bank" items="${banks}">
+							            <option value="${bank.name}">${bank.name}</option>
+							        </c:forEach>
+							        <option value="__new__">+ Add New Bank</option>
+							    </select>
+							    <small class="text-danger d-none" id="accountError">Please select a bank</small>
+							</div>
+							
+							<!-- NEW BANK INPUT -->
+							<div class="col-md-6" id="newBankDiv" style="display:none;">
+							    <label for="newAccount" class="form-label">New Bank Name</label>
+							    <input type="text" class="form-control" id="newAccount" name="newAccount" placeholder="Enter new bank name">
+							    <small class="text-danger d-none" id="newBankError">Please enter bank name</small>
+							</div>
+
 
                             <!-- INCOME TITLE -->
                             <div class="col-md-6">
@@ -117,15 +125,18 @@ function validateIncomeForm() {
     } else {
         document.getElementById("accountError").classList.add("d-none");
     }
-
-    // Title validation
+ // Title validation
     let title = document.getElementById("incomeTitle").value.trim();
-    if (title === "") {
+    let titleRegex = /^[A-Za-z\s]+$/; // only letters and spaces
+
+    if (title === "" || !titleRegex.test(title)) {
         document.getElementById("titleError").classList.remove("d-none");
+        document.getElementById("titleError").innerText = "Please enter a valid title (letters only)";
         isValid = false;
     } else {
         document.getElementById("titleError").classList.add("d-none");
     }
+
 
     // Amount validation
     let amount = document.getElementById("incomeAmount").value;

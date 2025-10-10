@@ -10,14 +10,15 @@
 				<jsp:include page="../Repayments/sidebar.jsp" />
 			</div>
 			<div class="col-md-7  mx-auto">
+				<h6 class="mb-0 text-uppercase">Add Lent Repayment</h6>
+				<hr/>
 				<div class="card">
 					<div class="card-body p-4">
-						<h5 class="mb-4">Repayments Lent Money</h5>
-
+					
 						<p style="color: green;">${successMsg}</p>
 						<p style="color: red;">${errMsg}</p>
 
-						<form class="row g-3" action="repaymentadd" method="post">
+						<form class="row g-3" action="addRepayment" method="post">
 							
 							<input type="hidden" name="lentId" value="${lentMoney.lentId}" />
 

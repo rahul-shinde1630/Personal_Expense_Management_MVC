@@ -44,9 +44,9 @@
 
                 <!-- ===================== REPAYMENTS TABLE ===================== -->
                 <c:if test="${empty param.repaymentType or param.repaymentType == 'REPAYMENTS'}">
-                    <c:if test="${empty repayments}">
+                  <%--   <c:if test="${empty repayments}">
                         <div class="alert alert-warning">No repayments found.</div>
-                    </c:if>
+                    </c:if> --%>
                     <c:if test="${not empty repayments}">
                         <div class="card mb-4">
                             <div class="card-body">
@@ -89,9 +89,9 @@
 
                 <!-- ===================== LENT TABLE ===================== -->
                 <c:if test="${empty param.repaymentType or param.repaymentType == 'LENT'}">
-                    <c:if test="${empty lentList}">
+                   <%--  <c:if test="${empty lentList}">
                         <div class="alert alert-warning">No lent records found.</div>
-                    </c:if>
+                    </c:if> --%>
                     <c:if test="${not empty lentList}">
                         <div class="card mb-4">
                             <div class="card-body">
@@ -133,9 +133,9 @@
 
                 <!-- ===================== BORROWED TABLE ===================== -->
                 <c:if test="${empty param.repaymentType or param.repaymentType == 'BORROWED'}">
-                    <c:if test="${empty borrowedList}">
+                  <%--   <c:if test="${empty borrowedList}">
                         <div class="alert alert-warning">No borrowed records found.</div>
-                    </c:if>
+                    </c:if> --%>
                     <c:if test="${not empty borrowedList}">
                         <div class="card mb-4">
                             <div class="card-body">

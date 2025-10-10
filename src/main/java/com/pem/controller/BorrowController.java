@@ -101,6 +101,6 @@ public class BorrowController {
 			model.addAttribute("errMsg", "Delete failed.");
 		}
 
-		return "redirect:viewBorrow";
+		return "redirect:/show-borrowed";
 	}
 }

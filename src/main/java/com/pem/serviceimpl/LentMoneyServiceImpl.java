@@ -51,9 +51,11 @@ public class LentMoneyServiceImpl implements LentMoneyService {
 	@Override
 	public boolean update(LentMoneyRequestDto dto) {
 		try {
-			restTemplate.put(BASE_URL + "/update", dto);
+			String url = BASE_URL + "/update";
+			restTemplate.put(url, dto);
 			return true;
 		} catch (Exception e) {
+			System.err.println("Error updating LentMoney: " + e.getMessage());
 			e.printStackTrace();
 			return false;
 		}

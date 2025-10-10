@@ -10,8 +10,8 @@
 				<jsp:include page="../Borrow/sidebar.jsp" />
 			</div>
 			<div class="col-md-7  mx-auto">
-		<h4>Lent Money Records</h4>
-
+		<h6 class="mb-0 text-uppercase">Your Lent</h6>
+				<hr/>
 		<p style="color: green;">${successMsg}</p>
 		<p style="color: red;">${errMsg}</p>
 

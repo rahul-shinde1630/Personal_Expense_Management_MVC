@@ -55,16 +55,17 @@
 								<input type="number" class="form-control" id="remainingAmount" name="remainingAmount"
 									value="${lentMoney.remainingAmount}" required>
 							</div>
+					<div class="col-md-6">
+					    <label for="status" class="form-label">Status</label>
+					    <select id="status" class="form-select" name="status" required>
+					        <option value="PENDING" ${lentMoney.status == 'PENDING' ? 'selected' : ''}>Pending</option>
+					        <option value="PARTIAL" ${lentMoney.status == 'PARTIAL' ? 'selected' : ''}>Partial</option>
+					        <option value="PAID" ${lentMoney.status == 'PAID' ? 'selected' : ''}>Paid</option>
+					    </select>
+					</div>
 
-							<!-- STATUS -->
-							<div class="col-md-6">
-								<label for="status" class="form-label">Status</label>
-								<select id="status" class="form-select" name="status" required>
-									<option value="Pending" ${lentMoney.status == 'Pending' ? 'selected' : ''}>Pending</option>
-									<option value="Paid" ${lentMoney.status == 'Paid' ? 'selected' : ''}>Paid</option>
-									<option value="Partial" ${lentMoney.status == 'Partial' ? 'selected' : ''}>Partial</option>
-								</select>
-							</div>
+
+
 
 							<!-- REASON -->
 							<div class="col-md-12">

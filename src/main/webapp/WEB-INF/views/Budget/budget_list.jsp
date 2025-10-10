@@ -19,7 +19,7 @@
         <form action="viewBudget" method="get" class="mb-3">
           <div class="row">
             <div class="col-md-6">
-              <select name="category" class="form-select">
+              <select name="category" class="form-select rounded-pill">
                 <option value="">-- All Categories --</option>
                 <c:forEach var="cat" items="${categories}">
                   <option value="${cat}" <c:if test="${param.category == cat}">selected</c:if>>
@@ -29,7 +29,7 @@
               </select>
             </div>
             <div class="col-md-6">
-              <button type="submit" class="btn btn-primary w-100">Filter</button>
+              <button type="submit" class="btn btn-primary rounded-pill w-100">Filter By Category</button>
             </div>
           </div>
         </form>

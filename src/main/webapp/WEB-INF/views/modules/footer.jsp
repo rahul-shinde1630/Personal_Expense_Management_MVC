@@ -85,6 +85,7 @@
     <script src="resources/assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js"></script>
 	<script src="resources/assets/plugins/chartjs/js/chart.js"></script>
 	<script src="resources/assets/js/index.js"></script>
+	<script src="resources/assets/js/expense-form.js"></script>
 	<!--app JS-->
 	<script src="resources/assets/js/app.js"></script>
 

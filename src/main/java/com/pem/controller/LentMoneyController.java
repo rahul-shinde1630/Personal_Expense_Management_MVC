@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -86,12 +85,16 @@ public class LentMoneyController {
 			model.addAttribute("errMsg", "Failed to update Lent Money.");
 		}
 
-		return "redirect:/show-lent";
+		// Reload the DTO for form
+		LentMoneyRequestDto lentMoney = lentMoneyService.getById(dto.getLentId());
+		model.addAttribute("lentMoney", lentMoney);
+
+		return "redirect:/show-lent"; // your JSP page
 	}
 
-	@GetMapping("/delete/{lentId}")
-	public String delete(@PathVariable Long lentId, @RequestParam("email") String email) {
+	@GetMapping("/deleteLentMoney")
+	public String delete(@RequestParam("lentId") Long lentId) {
 		lentMoneyService.delete(lentId);
-		return "redirect:/lentmoney/list?email=" + email;
+		return "redirect:/show-lent";
 	}
 }

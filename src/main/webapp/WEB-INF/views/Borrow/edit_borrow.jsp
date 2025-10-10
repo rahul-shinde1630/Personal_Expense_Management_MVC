@@ -50,14 +50,15 @@
                 <label class="form-label">Remaining Amount (₹)</label>
                 <input type="number" step="0.01" name="remainingAmount" class="form-control" value="${borrow.remainingAmount}" required />
               </div>
+					<div class="col-md-6">
+					    <label class="form-label">Status</label>
+					    <select name="status" class="form-select" required>
+					        <option value="PENDING" ${borrow.status == 'PENDING' ? 'selected' : ''}>Pending</option>
+					        <option value="PARTIAL" ${borrow.status == 'PARTIAL' ? 'selected' : ''}>Partial</option>
+					        <option value="PAID" ${borrow.status == 'PAID' ? 'selected' : ''}>Paid</option>
+					    </select>
+					</div>
 
-              <div class="col-md-6">
-                <label class="form-label">Status</label>
-                <select name="status" class="form-select" required>
-                  <option value="Pending" ${borrow.status == 'Pending' ? 'selected' : ''}>Pending</option>
-                  <option value="Paid" ${borrow.status == 'Paid' ? 'selected' : ''}>Paid</option>
-                </select>
-              </div>
 
               <div class="col-md-12">
                 <label class="form-label">Reason</label>

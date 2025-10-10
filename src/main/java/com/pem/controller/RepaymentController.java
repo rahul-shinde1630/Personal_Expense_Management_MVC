@@ -35,15 +35,22 @@ public class RepaymentController {
 
 	@GetMapping("/repayments")
 	public String showRepaymentPage() {
-		return "Repayments/repaymentsLent";
+		return "Repayments/repaymentsAdd";
 	}
 
 	@GetMapping("/show-repaymentss")
-	public String showRepaymentForm() {
+	public String showRepaymentForm(HttpSession session, Model model) {
+		String email = (String) session.getAttribute("email");
+		if (email == null) {
+			model.addAttribute("errMsg", "Session expired. Please log in again.");
+			return "login";
+		}
+		List<RepaymentResponseDto> repayments = repaymentService.getAllRepayments(email);
+		model.addAttribute("repayments", repayments);
 		return "Repayments/show-repayments";
 	}
 
-	@PostMapping("/repaymentadd")
+	@PostMapping("/addRepayment")
 	public String addRepayment(@ModelAttribute RepaymentRequestDto dto, HttpSession session, Model model) {
 		String email = (String) session.getAttribute("email");
 		if (email == null) {
@@ -59,7 +66,7 @@ public class RepaymentController {
 			model.addAttribute("errMsg", "Error adding repayment: " + e.getMessage());
 		}
 
-		return "Repayments/show-repayments";
+		return "redirect:/show-repaymentss";
 	}
 
 	@GetMapping("/show-data")
@@ -77,8 +84,8 @@ public class RepaymentController {
 		if (repaymentType == null || repaymentType.isEmpty()) {
 			// All types
 			List<RepaymentResponseDto> repayments = repaymentService.getAllRepayments(email);
-			List<LentMoneyResponseDto> lentList = lentMoneyService.getByEmail(email);
-			List<BorrowedMoneyResponseDto> borrowedList = borrowedMoneyService.getAllByUser(email);
+			List<LentMoneyResponseDto> lentList = repaymentService.getByEmail(email);
+			List<BorrowedMoneyResponseDto> borrowedList = repaymentService.getAllByUser(email);
 
 			model.addAttribute("repayments", repayments);
 			model.addAttribute("lentList", lentList);
@@ -88,10 +95,10 @@ public class RepaymentController {
 			model.addAttribute("repayments", repaymentService.getAllRepayments(email));
 
 		} else if ("LENT".equalsIgnoreCase(repaymentType)) {
-			model.addAttribute("lentList", lentMoneyService.getByEmail(email));
+			model.addAttribute("lentList", repaymentService.getByEmail(email));
 
 		} else if ("BORROWED".equalsIgnoreCase(repaymentType)) {
-			model.addAttribute("borrowedList", borrowedMoneyService.getAllByUser(email));
+			model.addAttribute("borrowedList", repaymentService.getAllByUser(email));
 		}
 
 		model.addAttribute("repaymentType", repaymentType);

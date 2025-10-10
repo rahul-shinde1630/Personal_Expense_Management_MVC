@@ -1,5 +1,9 @@
 package com.pem.serviceimpl;
 
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -12,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import com.pem.dto.expense.ExpenseAnalysisResponseDto;
 import com.pem.dto.expense.ExpenseDto;
 import com.pem.dto.expense.ExpenseRequestDto;
+import com.pem.dto.expense.ExpenseResponseDto;
 import com.pem.dto.expense.PageResponse;
 import com.pem.dto.expense.UpdateExpenseDto;
 import com.pem.service.ExpenseService;
@@ -134,6 +139,18 @@ public class ExpenseServiceimpl implements ExpenseService {
 		String apiUrl = "http://localhost:9197/api/expenses/analysis?email=" + email + "&month=" + month + "&year="
 				+ year;
 		return restTemplate.getForObject(apiUrl, ExpenseAnalysisResponseDto.class);
+	}
+
+	@Override
+	public List<ExpenseResponseDto> getExpensesByDate(LocalDate date) {
+		// Build API URL with the date
+		String url = API_BASE + "/by-date/" + date; // e.g., /by-date/2025-10-04
+
+		// Call the API using RestTemplate
+		ExpenseResponseDto[] response = restTemplate.getForObject(url, ExpenseResponseDto[].class);
+
+		// Convert array to List
+		return Arrays.asList(response);
 	}
 
 }

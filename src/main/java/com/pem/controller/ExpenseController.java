@@ -17,6 +17,7 @@ import com.pem.dto.category.CategoryDto;
 import com.pem.dto.expense.ExpenseAnalysisResponseDto;
 import com.pem.dto.expense.ExpenseDto;
 import com.pem.dto.expense.ExpenseRequestDto;
+import com.pem.dto.expense.ExpenseResponseDto;
 import com.pem.dto.expense.UpdateExpenseDto;
 import com.pem.service.BankService;
 import com.pem.service.CategoryService;
@@ -79,7 +80,10 @@ public class ExpenseController {
 	}
 
 	@GetMapping("/transactionss")
-	public String getpage() {
+	public String getTodayExpenses(Model model) {
+		LocalDate today = LocalDate.now(); // gets current date
+		List<ExpenseResponseDto> expenses = expenseService.getExpensesByDate(today);
+		model.addAttribute("expenses", expenses);
 		return "Expense/showExpense";
 	}
 

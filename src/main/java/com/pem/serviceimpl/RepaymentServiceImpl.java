@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.pem.dto.borrowedmoney.BorrowedMoneyResponseDto;
+import com.pem.dto.lentmoney.LentMoneyResponseDto;
 import com.pem.dto.repayment.RepaymentRequestDto;
 import com.pem.dto.repayment.RepaymentResponseDto;
 import com.pem.service.RepaymentService;
@@ -69,6 +71,25 @@ public class RepaymentServiceImpl implements RepaymentService {
 			return Arrays.asList(response);
 		}
 		return Collections.emptyList();
+	}
+
+	@Override
+	public List<LentMoneyResponseDto> getByEmail(String email) {
+		LentMoneyResponseDto[] response = restTemplate.getForObject(BASE_URL + "/lent?email=" + email,
+				LentMoneyResponseDto[].class);
+		return Arrays.asList(response);
+	}
+
+	@Override
+	public List<BorrowedMoneyResponseDto> getAllByUser(String email) {
+		try {
+			BorrowedMoneyResponseDto[] arr = restTemplate.getForObject(BASE_URL + "/borrowed?email=" + email,
+					BorrowedMoneyResponseDto[].class);
+			return Arrays.asList(arr);
+		} catch (Exception e) {
+			System.out.println("Fetch Error: " + e.getMessage());
+			return List.of();
+		}
 	}
 
 }
