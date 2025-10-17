@@ -13,25 +13,26 @@ public class ReportsServiceImpl implements ReportsService {
 	private RestTemplate restTemplate;
 
 	@Override
-	public double getIncome(String email, int month, int year) {
-		String url = "http://localhost:9197/api/reports/income?email=" + email + "&month=" + month + "&year=" + year;
+	public double getIncome(String email, int fromYear, int toYear) {
+		String url = "http://localhost:9197/api/reports/income?email=" + email + "&fromYear=" + fromYear + "&toYear="
+				+ toYear;
 		Double result = restTemplate.getForObject(url, Double.class);
 		return result != null ? result : 0.0;
 	}
 
 	@Override
-	public double getExpense(String email, int month, int year) {
-		String url = "http://localhost:9197/api/reports/expense?email=" + email + "&month=" + month + "&year=" + year;
+	public double getExpense(String email, int fromYear, int toYear) {
+		String url = "http://localhost:9197/api/reports/expense?email=" + email + "&fromYear=" + fromYear + "&toYear="
+				+ toYear;
 		Double result = restTemplate.getForObject(url, Double.class);
 		return result != null ? result : 0.0;
 	}
 
 	@Override
-	public Double getBorrowedRemaining(String email, int month, int year) {
-		String url = "http://localhost:9197/api/reports/borrowedRemaining?email=" + email + "&month=" + month + "&year="
-				+ year;
+	public Double getBorrowedRemaining(String email, int fromYear, int toYear) {
+		String url = "http://localhost:9197/api/reports/borrowedRemaining?email=" + email + "&fromYear=" + fromYear
+				+ "&toYear=" + toYear;
 		Double result = restTemplate.getForObject(url, Double.class);
 		return result != null ? result : 0.0;
 	}
-
 }

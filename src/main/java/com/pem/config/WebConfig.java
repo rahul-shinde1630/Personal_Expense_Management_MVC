@@ -12,7 +12,8 @@ public class WebConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new AuthInterceptor()).addPathPatterns("/**") // Secure all URLs
-				.excludePathPatterns("/login", "/signup", "/home", "/resources/**", "/webjars/**");
+				.excludePathPatterns("/login", "/signup", "/home", "/forgot-password", "/send-otp", "/verify-otp",
+						"/update-password", "/resources/**", "/webjars/**");
 	}
 
 }

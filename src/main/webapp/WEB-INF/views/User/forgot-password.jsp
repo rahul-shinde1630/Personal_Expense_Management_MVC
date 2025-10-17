@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../modules2/header.jsp"/>
 
 <!--wrapper-->
@@ -26,6 +27,13 @@
                                 </div>
                                 <h4 class="mt-5 font-weight-bold">Forgot Password?</h4>
                                 <p class="text-muted">Enter your registered email ID to reset the password</p>
+								<c:if test="${not empty error}">
+								    <div class="alert alert-danger mt-3">${error}</div>
+								</c:if>
+								
+								<c:if test="${not empty msg}">
+								    <div class="alert alert-success mt-3">${msg}</div>
+								</c:if>
 
                                 <!-- ✅ Added Form -->
                                 <form action="send-otp" method="post">

@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 public class OtpValidationRequest {
 	private String email;
-	private String otp;
 	private String newPassword;
+	private String confirmPassword;
+
+	private String otp;
 }

@@ -11,8 +11,7 @@ import com.pem.service.ForgotPasswordService;
 public class ForgotPasswordServiceImpl implements ForgotPasswordService {
 
 	private final String BASE_URL = "http://localhost:9197/api/auth";
-
-	private RestTemplate restTemplate = new RestTemplate();
+	private final RestTemplate restTemplate = new RestTemplate();
 
 	@Override
 	public String sendOtp(ForgotPasswordRequest request) {
@@ -20,7 +19,14 @@ public class ForgotPasswordServiceImpl implements ForgotPasswordService {
 	}
 
 	@Override
-	public String validateOtpAndResetPassword(OtpValidationRequest request) {
+	public boolean validateOtp(OtpValidationRequest request) {
+
+		return restTemplate.postForObject(BASE_URL + "/verify-otp", request, Boolean.class);
+	}
+
+	@Override
+	public String updatePassword(OtpValidationRequest request) {
+
 		return restTemplate.postForObject(BASE_URL + "/reset-password", request, String.class);
 	}
 }

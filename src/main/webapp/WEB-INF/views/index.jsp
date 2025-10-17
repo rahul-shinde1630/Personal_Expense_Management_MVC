@@ -131,9 +131,9 @@ $(document).ready(function () {
     let income = 0, expense = 0, borrowed = 0, netBalance = 0;
 
     // Initialize Doughnut Chart
-    var ctx = document.getElementById("financeChart").getContext('2d');
-    var financeChart = new Chart(ctx, {
-        type: 'doughnut',
+    const ctx = document.getElementById("financeChart").getContext("2d");
+    const financeChart = new Chart(ctx, {
+        type: "doughnut",
         data: {
             labels: ["Income", "Expense", "Net Balance", "Borrowed Remaining"],
             datasets: [{
@@ -149,9 +149,10 @@ $(document).ready(function () {
         }
     });
 
-    // Update chart and badges
+    // Update chart and values
     function updateChart() {
         netBalance = income - expense;
+
         $("#incomeValue").text("₹ " + income.toFixed(2));
         $("#expenseValue").text("₹ " + expense.toFixed(2));
         $("#netBalanceValue").text("₹ " + netBalance.toFixed(2));
@@ -166,32 +167,26 @@ $(document).ready(function () {
         financeChart.update();
     }
 
-    // Income AJAX
-    $.ajax({
-        url: "/reports/income",
-        method: "GET",
-        data: { month: 8, year: 2025 },
-        success: function (response) { income = response || 0; updateChart(); },
-        error: function () { $("#incomeValue").text("Error"); }
-    });
+    // Get current year
+    const currentYear = new Date().getFullYear();
 
-    // Expense AJAX
-    $.ajax({
-        url: "/reports/expense",
-        method: "GET",
-        data: { month: 8, year: 2025 },
-        success: function (response) { expense = response || 0; updateChart(); },
-        error: function () { $("#expenseValue").text("Error"); }
-    });
+    // --- AJAX Calls to updated controller ---
+    const requestData = { fromYear: 2000, toYear: currentYear };
 
-    // Borrowed Remaining AJAX
-    $.ajax({
-        url: "/reports/borrowedRemaining",
-        method: "GET",
-        data: { month: 8, year: 2025 },
-        success: function (response) { borrowed = response || 0; updateChart(); },
-        error: function () { $("#borrowedValue").text("Error"); }
-    });
+    $.get("/reports/income", requestData, function(response) {
+        income = response || 0;
+        updateChart();
+    }).fail(function() { $("#incomeValue").text("Error"); });
+
+    $.get("/reports/expense", requestData, function(response) {
+        expense = response || 0;
+        updateChart();
+    }).fail(function() { $("#expenseValue").text("Error"); });
+
+    $.get("/reports/borrowedRemaining", requestData, function(response) {
+        borrowed = response || 0;
+        updateChart();
+    }).fail(function() { $("#borrowedValue").text("Error"); });
 });
 </script>
 

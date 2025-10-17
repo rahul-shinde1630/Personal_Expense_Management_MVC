@@ -20,32 +20,31 @@ public class ReportsController {
 
 	@GetMapping("/income")
 	@ResponseBody
-	public double getIncome(HttpSession session, @RequestParam int month, @RequestParam int year) {
+	public double getIncome(HttpSession session, @RequestParam int fromYear, @RequestParam int toYear) {
 		String email = (String) session.getAttribute("email");
 		if (email == null) {
 			throw new RuntimeException("User not logged in");
 		}
-		return reportsService.getIncome(email, month, year);
+		return reportsService.getIncome(email, fromYear, toYear);
 	}
 
 	@GetMapping("/expense")
 	@ResponseBody
-	public double getExpense(HttpSession session, @RequestParam int month, @RequestParam int year) {
+	public double getExpense(HttpSession session, @RequestParam int fromYear, @RequestParam int toYear) {
 		String email = (String) session.getAttribute("email");
 		if (email == null) {
 			throw new RuntimeException("User not logged in");
 		}
-		return reportsService.getExpense(email, month, year);
+		return reportsService.getExpense(email, fromYear, toYear);
 	}
 
 	@GetMapping("/borrowedRemaining")
 	@ResponseBody
-	public Double getBorrowedRemaining(HttpSession session, @RequestParam int month, @RequestParam int year) {
+	public Double getBorrowedRemaining(HttpSession session, @RequestParam int fromYear, @RequestParam int toYear) {
 		String email = (String) session.getAttribute("email");
 		if (email == null) {
 			throw new RuntimeException("User not logged in");
 		}
-		return reportsService.getBorrowedRemaining(email, month, year);
+		return reportsService.getBorrowedRemaining(email, fromYear, toYear);
 	}
-
 }
