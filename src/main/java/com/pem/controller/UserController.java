@@ -40,6 +40,7 @@ public class UserController {
 		if (result) {
 			session.setAttribute("email", dto.getEmail());
 			model.addAttribute("successMsg", "✅ Successfully Login !");
+
 			return "index";
 		} else {
 			model.addAttribute("errMsg", "❌ Wrong Credentials..! ");

@@ -1,5 +1,7 @@
 package com.pem.dto.expense;
 
+import java.time.LocalDate;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +15,7 @@ public class ExpenseResponseDto {
 	private double amount;
 	private String category;
 	private String paymentMode;
-	private String expenseDate;
+	private LocalDate expenseDate;
 	private String expenseTime;
 	private String account;
 	private String user;
